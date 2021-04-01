@@ -6,8 +6,8 @@ void Ant::initAnt(glm::vec2 pos)
 
 void Ant::update(float time)
 {
-	m_Vel = m_Vel + glm::vec2(ofRandom(2) - 1, ofRandom(2) - 1) * 0.5;
-	m_Vel = glm::normalize(m_Vel) * 10;
+	m_Vel = m_Vel + glm::vec2(ofRandom(2) - 1, ofRandom(2) - 1) * m_SpeedChange;
+	m_Vel = glm::normalize(m_Vel) * m_MaxSpeed;
 	m_Pos += m_Vel * time;
 
 	if (m_Pos.x <= 0.0f) {
@@ -38,4 +38,25 @@ void Ant::draw()
 	ofDrawCircle(m_Pos, 1.0f);
 	ofPopMatrix();
 
+}
+
+
+
+
+
+
+
+void QueenAnt::initQueenAnt(glm::vec2 pos)
+{
+	Ant::initAnt(pos);
+}
+
+void QueenAnt::update(float time)
+{
+	Ant::update(time);
+}
+
+void QueenAnt::draw()
+{
+	Ant::draw();
 }
